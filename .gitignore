@@ -1,0 +1,21 @@
+# checkpoints
+checkpoints/
+*.pt
+*.bin
+*.safetensors
+
+# python
+__pycache__/
+*.pyc
+
+# notebooks
+.ipynb_checkpoints/
+
+# datasets
+data/
+
+# virtual environments
+venv/
+.venv/
+
+ppo.ipynb
