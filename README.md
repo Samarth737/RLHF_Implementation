@@ -1,19 +1,138 @@
 ## About the Project
-This Project uses meta-llama/Llama-3.2-1B model to perform supervised fine tuning, then train a reward model and then use PPO algortithm to optimise the model based on human feedback. 
+# RLHF Implementation with Open-Source LLMs
 
-Reason for Selection of model:
+This project demonstrates a full **Reinforcement Learning from Human Feedback (RLHF)** pipeline using open-source language models.
+The pipeline includes:
 
-Recognizable and Well-Supported
-The Llama family of models developed by Meta is widely recognized in the open-source AI community. Because of its popularity, it has strong ecosystem support, extensive documentation, and compatibility with many modern tooling frameworks such as Hugging Face Transformers. This makes experimentation and implementation significantly easier.
+* **Supervised Fine-Tuning (SFT)**
+* **Reward Model Training**
+* **Policy Optimization using PPO**
 
-Modern Architecture
-Llama 3.2 models incorporate recent improvements in transformer-based language models, providing better baseline performance compared to older models like GPT-2. Using a modern architecture ensures the project demonstrates techniques on models that reflect current industry practices.
+The implementation uses the Hugging Face ecosystem (`transformers`, `trl`, `datasets`, etc.) and is designed to run both **locally** and in **Google Colab**.
 
-Appropriate Size for SFT and RLHF
-The 1B parameter size provides a practical balance between capability and computational efficiency. Larger models (7B–70B) require significant GPU resources, which can make training expensive and slow. The 1B model is small enough to fine-tune on limited hardware while still being powerful enough.
+---
 
-Efficient Experimentation
-Because of its moderate size, training iterations are faster. This allows multiple experiments with different datasets, reward functions, or training configurations without excessive compute costs.
+# Environment Setup
+
+The notebooks are designed to automatically configure the environment.
+
+## Option 1 : Run in Google Colab (Recommended)
+
+1. Open any notebook in Google Colab.
+2. Run the **first cell** in the notebook.
+
+The setup cell will automatically:
+
+* detect the Colab environment
+* clone the repository (if not already present)
+* install required dependencies
+* set the correct working directory
+
+This setup runs **only once per Colab runtime session**.
+
+---
+
+## Option 2 : Local Setup
+
+Clone the repository:
+
+```bash
+git clone https://github.com/Samarth737/rlhf-project.git
+cd RLHF_Implementation
+```
+
+Install dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+# Project Structure
+
+```
+RLHF_Implementation/
+│
+├── notebooks/
+│   ├── sft_training.ipynb
+│   ├── reward_model_training.ipynb
+│   └── ppo_training.ipynb
+│
+├── models/
+│   ├── sft_model/
+│   ├── reward_model/
+│   └── ppo_model/
+│
+├── plots/
+│   └── training_curves
+│
+├── requirements.txt
+└── README.md
+```
+
+---
+
+# RLHF Pipeline Overview
+
+The training pipeline follows the standard RLHF process:
+
+1. **Supervised Fine-Tuning (SFT)**
+   The base model is trained on human demonstrations to learn the desired response format.
+
+2. **Reward Model Training**
+   A reward model is trained using preference pairs (chosen vs rejected responses).
+
+3. **Policy Optimization (PPO)**
+   The policy model is optimized using **Proximal Policy Optimization (PPO)** with the reward model providing feedback.
+
+---
+
+# Dependencies
+
+Main libraries used:
+
+* `torch`
+* `transformers`
+* `trl`
+* `accelerate`
+* `datasets`
+* `peft`
+* `sentencepiece`
+
+Full dependency list is available in:
+
+```
+requirements.txt
+```
+
+---
+
+# Running the Pipeline
+
+Typical workflow:
+
+1. Run **Supervised Fine-Tuning**
+2. Train the **Reward Model**
+3. Run **PPO Training**
+4. Evaluate the final model
+
+Each stage is implemented in separate notebooks.
+
+---
+
+# Notes for Colab Users
+
+The notebooks include an environment setup cell that:
+
+* clones the repository automatically
+* installs dependencies only once per runtime
+* ensures the correct working directory
+
+This makes the notebooks **self-contained and reproducible**.
+
+---
+
 
 ## Author
 Samarth Neerkaje Saralaya
