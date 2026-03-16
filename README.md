@@ -47,32 +47,6 @@ Install dependencies:
 pip install -r requirements.txt
 ```
 
----
-
-# Project Structure
-
-```
-RLHF_Implementation/
-│
-├── notebooks/
-│   ├── sft_training.ipynb
-│   ├── reward_model_training.ipynb
-│   └── ppo_training.ipynb
-│
-├── models/
-│   ├── sft_model/
-│   ├── reward_model/
-│   └── ppo_model/
-│
-├── plots/
-│   └── training_curves
-│
-├── requirements.txt
-└── README.md
-```
-
----
-
 # RLHF Pipeline Overview
 
 The training pipeline follows the standard RLHF process:
